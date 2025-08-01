@@ -11,14 +11,6 @@ mirror = """<b>Send link along with command line or </b>
 <b>NOTE:</b>
 1. Commands that start with <b>qb</b> are ONLY for torrents."""
 
-yt = """<b>Send link along with command line</b>:
-
-/cmd link
-<b>By replying to link</b>:
-/cmd -n new name -z password -opt x:y|x1:y1
-
-Check here all supported <a href='https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md'>SITES</a>
-Check all yt-dlp api options from this <a href='https://github.com/yt-dlp/yt-dlp/blob/master/yt_dlp/YoutubeDL.py#L212'>FILE</a> or use this <a href='https://t.me/mltb_official_channel/177'>script</a> to convert cli arguments to api options."""
 
 clone = """Send Gdrive|Gdot|Filepress|Filebee|Appdrive|Gdflix link or rclone path along with command or by replying to the link/rc_path by command.
 Use -sync to use sync method in rclone. Example: /cmd rcl/rclone_path -up rcl/rclone_path/rc -sync"""
@@ -181,11 +173,6 @@ qual = """<b>Quality Buttons</b>: -s
 In case default quality added from yt-dlp options using format option and you need to select quality for specific link or links with multi links feature.
 /cmd link -s"""
 
-yt_opt = """<b>Options</b>: -opt
-
-/cmd link -opt {"format": "bv*+mergeall[vcodec=none]", "nocheckcertificate": True, "playliststart": 10, "fragment_retries": float("inf"), "matchtitle": "S13", "writesubtitles": True, "live_from_start": True, "postprocessor_args": {"ffmpeg": ["-threads", "4"]}, "wait_for_video": (5, 100), "download_ranges": [{"start_time": 0, "end_time": 10}]}
-
-Check all yt-dlp api options from this <a href='https://github.com/yt-dlp/yt-dlp/blob/master/yt_dlp/YoutubeDL.py#L184'>FILE</a> or use this <a href='https://t.me/mltb_official_channel/177'>script</a> to convert cli arguments to api options."""
 
 convert_media = """<b>Convert Media</b>: -ca -cv
 /cmd link -ca mp3 -cv mp4 (convert all audios to mp3 and all videos to mp4)
@@ -252,29 +239,7 @@ Here I will explain how to use mltb.* which is reference to files you want to wo
 3. Third cmd: the input in mltb.m4a so this cmd will work only on m4a audios and the output is mltb.mp3 so the output extension is mp3.
 4. Fourth cmd: the input is mltb.audio so this cmd will work on all audios and the output is mltb.mp3 so the output extension is mp3."""
 
-YT_HELP_DICT = {
-    "main": yt,
-    "New-Name": f"{new_name}\nNote: Don't add file extension",
-    "Zip": zip_arg,
-    "Quality": qual,
-    "Options": yt_opt,
-    "Multi-Link": multi_link,
-    "Same-Directory": same_dir,
-    "Thumb": thumb,
-    "Split-Size": split_size,
-    "Upload-Destination": upload,
-    "Rclone-Flags": rcf,
-    "Bulk": bulk,
-    "Sample-Video": sample_video,
-    "Screenshot": screenshot,
-    "Convert-Media": convert_media,
-    "Force-Start": force_start,
-    "Name-Swap": name_swap,
-    "TG-Transmission": transmission,
-    "Thumb-Layout": thumbnail_layout,
-    "Leech-Type": leech_as,
-    "FFmpeg-Cmds": ffmpeg_cmds,
-}
+
 
 MIRROR_HELP_DICT = {
     "main": mirror,
@@ -350,14 +315,8 @@ help_string = f"""
 NOTE: Try each command without any argument to see more detalis.
 /{BotCommands.MirrorCommand[0]} or /{BotCommands.MirrorCommand[1]}: Start mirroring to cloud.
 /{BotCommands.QbMirrorCommand[0]} or /{BotCommands.QbMirrorCommand[1]}: Start Mirroring to cloud using qBittorrent.
-/{BotCommands.JdMirrorCommand[0]} or /{BotCommands.JdMirrorCommand[1]}: Start Mirroring to cloud using JDownloader.
-/{BotCommands.NzbMirrorCommand[0]} or /{BotCommands.NzbMirrorCommand[1]}: Start Mirroring to cloud using Sabnzbd.
-/{BotCommands.YtdlCommand[0]} or /{BotCommands.YtdlCommand[1]}: Mirror yt-dlp supported link.
 /{BotCommands.LeechCommand[0]} or /{BotCommands.LeechCommand[1]}: Start leeching to Telegram.
 /{BotCommands.QbLeechCommand[0]} or /{BotCommands.QbLeechCommand[1]}: Start leeching using qBittorrent.
-/{BotCommands.JdLeechCommand[0]} or /{BotCommands.JdLeechCommand[1]}: Start leeching using JDownloader.
-/{BotCommands.NzbLeechCommand[0]} or /{BotCommands.NzbLeechCommand[1]}: Start leeching using Sabnzbd.
-/{BotCommands.YtdlLeechCommand[0]} or /{BotCommands.YtdlLeechCommand[1]}: Leech yt-dlp supported link.
 /{BotCommands.CloneCommand} [drive_url]: Copy file/folder to Google Drive.
 /{BotCommands.CountCommand} [drive_url]: Count file/folder of Google Drive.
 /{BotCommands.DeleteCommand} [drive_url]: Delete file/folder from Google Drive (Only Owner & Sudo).
@@ -369,10 +328,8 @@ NOTE: Try each command without any argument to see more detalis.
 /{BotCommands.CancelAllCommand} [query]: Cancel all [status] tasks.
 /{BotCommands.ListCommand} [query]: Search in Google Drive(s).
 /{BotCommands.SearchCommand} [query]: Search for torrents with API.
-/{BotCommands.MediaInfoCommand[0]} or /{BotCommands.MediaInfoCommand[1]} [query]: Get media info.
 /{BotCommands.StatusCommand}: Shows a status of all the downloads.
 /{BotCommands.StatsCommand}: Show stats of the machine where the bot is hosted in.
-/{BotCommands.PingCommand}: Check how long it takes to Ping the Bot (Only Owner & Sudo).
 /{BotCommands.AuthorizeCommand}: Authorize a chat or a user to use the bot (Only Owner & Sudo).
 /{BotCommands.UnAuthorizeCommand}: Unauthorize a chat or a user to use the bot (Only Owner & Sudo).
 /{BotCommands.UsersCommand}: show users settings (Only Owner & Sudo).
@@ -384,30 +341,22 @@ NOTE: Try each command without any argument to see more detalis.
 /{BotCommands.AExecCommand}: Exec async functions (Only Owner).
 /{BotCommands.ExecCommand}: Exec sync functions (Only Owner).
 /{BotCommands.ClearLocalsCommand}: Clear {BotCommands.AExecCommand} or {BotCommands.ExecCommand} locals (Only Owner).
-/{BotCommands.RssCommand}: RSS Menu.
 """
 
 BOT_COMMANDS = {
     "Mirror": "[link/file] Mirror to Upload Destination",
     "QbMirror": "[magnet/torrent] Mirror to Upload Destination using qbit",
-    "Ytdl": "[link] Mirror YouTube, m3u8, Social Media and yt-dlp supported urls",
     "Leech": "[link/file] Leech files to Upload to Telegram",
-    "QbLeech": "[magnet/torrent] Leech files to Upload to Telegram using qbit",
-    "YtdlLeech": "[link] Leech YouTube, m3u8, Social Media and yt-dlp supported urls",
+    "QbLeech": "[magnet/torrent] Leech files to Upload to Telegram using qbit",    
     "Clone": "[link] Clone files/folders to GDrive",
     "UserSet": "User personal settings",
     "ForceStart": "[gid/reply] Force start from queued task",
     "Count": "[link] Count no. of files/folders in GDrive",
     "List": "[query] Search any Text which is available in GDrive",
     "Search": "[query] Search torrents via Qbit Plugins",
-    "MediaInfo": "[reply/link] Get MediaInfo of the Target Media",
-    "SpeedTest": "Check Bot Speed using Speedtest.com",
-    "Select": "[gid/reply] Select files for NZB, Aria2, Qbit Tasks",
-    "Ping": "Ping Bot to test Response Speed",
+    "Select": "[gid/reply] Select files for NZB, Aria2, Qbit Tasks",    
     "Status": "[id/me] Tasks Status of Bot",
     "Stats": "Bot, OS, Repo & System full Statistics",
-    "Rss": "User RSS Management Settings",
-    "IMDB": "[query] or ttxxxxxx Get IMDB info",
     "CancelAll": "Cancel all Tasks on the Bot",
     "Help": "Detailed help usage of the WZ Bot",
     "BotSet": "[SUDO] Bot Management Settings",
