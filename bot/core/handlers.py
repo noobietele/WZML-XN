@@ -100,14 +100,7 @@ def add_handlers():
             filters=command(BotCommands.BotSetCommand, case_sensitive=True)
             & CustomFilters.sudo,
         )
-    )
-    TgClient.bot.add_handler(
-        MessageHandler(
-            broadcast,
-            filters=command(BotCommands.BroadcastCommand, case_sensitive=True)
-            & CustomFilters.sudo,
-        )
-    )
+    )    
     TgClient.bot.add_handler(
         CallbackQueryHandler(
             edit_bot_settings, filters=regex("^botset") & CustomFilters.sudo
@@ -219,20 +212,6 @@ def add_handlers():
     )
     TgClient.bot.add_handler(
         MessageHandler(
-            jd_mirror,
-            filters=command(BotCommands.JdMirrorCommand, case_sensitive=True)
-            & CustomFilters.authorized,
-        )
-    )
-    TgClient.bot.add_handler(
-        MessageHandler(
-            nzb_mirror,
-            filters=command(BotCommands.NzbMirrorCommand, case_sensitive=True)
-            & CustomFilters.authorized,
-        )
-    )
-    TgClient.bot.add_handler(
-        MessageHandler(
             leech,
             filters=command(BotCommands.LeechCommand, case_sensitive=True)
             & CustomFilters.authorized,
@@ -242,27 +221,6 @@ def add_handlers():
         MessageHandler(
             qb_leech,
             filters=command(BotCommands.QbLeechCommand, case_sensitive=True)
-            & CustomFilters.authorized,
-        )
-    )
-    TgClient.bot.add_handler(
-        MessageHandler(
-            jd_leech,
-            filters=command(BotCommands.JdLeechCommand, case_sensitive=True)
-            & CustomFilters.authorized,
-        )
-    )
-    TgClient.bot.add_handler(
-        MessageHandler(
-            nzb_leech,
-            filters=command(BotCommands.NzbLeechCommand, case_sensitive=True)
-            & CustomFilters.authorized,
-        )
-    )
-    TgClient.bot.add_handler(
-        MessageHandler(
-            get_rss_menu,
-            filters=command(BotCommands.RssCommand, case_sensitive=True)
             & CustomFilters.authorized,
         )
     )
@@ -319,39 +277,8 @@ def add_handlers():
     )
     TgClient.bot.add_handler(
         MessageHandler(
-            imdb_search,
-            filters=command(BotCommands.IMDBCommand, case_sensitive=True)
-            & CustomFilters.authorized,
-        )
-    )
-    TgClient.bot.add_handler(
-        CallbackQueryHandler(imdb_callback, filters=regex("^imdb"))
-    )
-    TgClient.bot.add_handler(
-        MessageHandler(
-            ping,
-            filters=command(BotCommands.PingCommand, case_sensitive=True)
-            & CustomFilters.authorized,
-        )
-    )
-    TgClient.bot.add_handler(
-        MessageHandler(
             bot_help,
             filters=command(BotCommands.HelpCommand, case_sensitive=True)
-            & CustomFilters.authorized,
-        )
-    )
-    TgClient.bot.add_handler(
-        MessageHandler(
-            mediainfo,
-            filters=command(BotCommands.MediaInfoCommand, case_sensitive=True)
-            & CustomFilters.authorized,
-        )
-    )
-    TgClient.bot.add_handler(
-        MessageHandler(
-            speedtest,
-            filters=command(BotCommands.SpeedTestCommand, case_sensitive=True)
             & CustomFilters.authorized,
         )
     )
@@ -401,27 +328,6 @@ def add_handlers():
     )
     TgClient.bot.add_handler(
         CallbackQueryHandler(edit_user_settings, filters=regex("^userset"))
-    )
-    TgClient.bot.add_handler(
-        MessageHandler(
-            ytdl,
-            filters=command(BotCommands.YtdlCommand, case_sensitive=True)
-            & CustomFilters.authorized,
-        )
-    )
-    TgClient.bot.add_handler(
-        MessageHandler(
-            ytdl_leech,
-            filters=command(BotCommands.YtdlLeechCommand, case_sensitive=True)
-            & CustomFilters.authorized,
-        )
-    )
-    TgClient.bot.add_handler(
-        MessageHandler(
-            hydra_search,
-            filters=command(BotCommands.NzbSearchCommand, case_sensitive=True)
-            & CustomFilters.authorized,
-        )
     )
     if Config.SET_COMMANDS:
         global BOT_COMMANDS
