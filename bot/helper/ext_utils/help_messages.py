@@ -11,6 +11,14 @@ mirror = """<b>Send link along with command line or </b>
 <b>NOTE:</b>
 1. Commands that start with <b>qb</b> are ONLY for torrents."""
 
+yt = """<b>Send link along with command line</b>:
+
+/cmd link
+<b>By replying to link</b>:
+/cmd -n new name -z password -opt x:y|x1:y1
+
+Check here all supported <a href='https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md'>SITES</a>
+Check all yt-dlp api options from this <a href='https://github.com/yt-dlp/yt-dlp/blob/master/yt_dlp/YoutubeDL.py#L212'>FILE</a> or use this <a href='https://t.me/mltb_official_channel/177'>script</a> to convert cli arguments to api options."""
 
 clone = """Send Gdrive|Gdot|Filepress|Filebee|Appdrive|Gdflix link or rclone path along with command or by replying to the link/rc_path by command.
 Use -sync to use sync method in rclone. Example: /cmd rcl/rclone_path -up rcl/rclone_path/rc -sync"""
@@ -173,6 +181,11 @@ qual = """<b>Quality Buttons</b>: -s
 In case default quality added from yt-dlp options using format option and you need to select quality for specific link or links with multi links feature.
 /cmd link -s"""
 
+yt_opt = """<b>Options</b>: -opt
+
+/cmd link -opt {"format": "bv*+mergeall[vcodec=none]", "nocheckcertificate": True, "playliststart": 10, "fragment_retries": float("inf"), "matchtitle": "S13", "writesubtitles": True, "live_from_start": True, "postprocessor_args": {"ffmpeg": ["-threads", "4"]}, "wait_for_video": (5, 100), "download_ranges": [{"start_time": 0, "end_time": 10}]}
+
+Check all yt-dlp api options from this <a href='https://github.com/yt-dlp/yt-dlp/blob/master/yt_dlp/YoutubeDL.py#L184'>FILE</a> or use this <a href='https://t.me/mltb_official_channel/177'>script</a> to convert cli arguments to api options."""
 
 convert_media = """<b>Convert Media</b>: -ca -cv
 /cmd link -ca mp3 -cv mp4 (convert all audios to mp3 and all videos to mp4)
@@ -239,7 +252,29 @@ Here I will explain how to use mltb.* which is reference to files you want to wo
 3. Third cmd: the input in mltb.m4a so this cmd will work only on m4a audios and the output is mltb.mp3 so the output extension is mp3.
 4. Fourth cmd: the input is mltb.audio so this cmd will work on all audios and the output is mltb.mp3 so the output extension is mp3."""
 
-
+YT_HELP_DICT = {
+    "main": yt,
+    "New-Name": f"{new_name}\nNote: Don't add file extension",
+    "Zip": zip_arg,
+    "Quality": qual,
+    "Options": yt_opt,
+    "Multi-Link": multi_link,
+    "Same-Directory": same_dir,
+    "Thumb": thumb,
+    "Split-Size": split_size,
+    "Upload-Destination": upload,
+    "Rclone-Flags": rcf,
+    "Bulk": bulk,
+    "Sample-Video": sample_video,
+    "Screenshot": screenshot,
+    "Convert-Media": convert_media,
+    "Force-Start": force_start,
+    "Name-Swap": name_swap,
+    "TG-Transmission": transmission,
+    "Thumb-Layout": thumbnail_layout,
+    "Leech-Type": leech_as,
+    "FFmpeg-Cmds": ffmpeg_cmds,
+}
 
 MIRROR_HELP_DICT = {
     "main": mirror,
@@ -309,6 +344,7 @@ PASSWORD_ERROR_MESSAGE = """
 
 <b>Example:</b> link::my password
 """
+
 
 
 help_string = f"""
