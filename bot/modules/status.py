@@ -120,17 +120,9 @@ easter_eggs = [
 ]
 
 # Polite responses for owner (10)
-owner_responses = [
-    "✨ <b>Dear Master, there are no tasks currently running.</b>",
-    "🙏 <b>My deepest respects, but nothing is in progress right now.</b>",
-    "💎 <b>Everything’s clear at the moment, Boss.</b>",
-    "🫡 <b>No active tasks, Sir. Standing by.</b>",
-    "👑 <b>Nothing in queue, My Liege.</b>",
-    "🎩 <b>At your service, Master. The task list is empty.</b>",
-    "⚙️ <b>No active processes, as you command.</b>",
-    "🖥️ <b>The system is idle and awaiting your orders.</b>",
-    "📊 <b>All clear, Captain. No current operations.</b>",
-    "📭 <b>The taskbox is empty, Boss.</b>",
+owner_responses = [   
+    "<b>No active tasks,System Idle.</b>",
+    
 ]
 
 
@@ -147,7 +139,7 @@ async def task_status(_, message):
         if message.from_user.id == OWNER_ID:
             response = random.choice(owner_responses)
         else:
-            response = random.choice(easter_eggs)
+            response = random.choice(owner_responses)
 
         msg = f"""{response}
 
