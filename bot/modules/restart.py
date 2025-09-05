@@ -29,6 +29,61 @@ async def restart_bot(_, message):
     await send_message(
         message, "<i>Bot is Being Restarted,Wait! </i>"
     )
+     await query.answer()
+    data = query.data.split()
+    message = query.message
+    reply_to = message.reply_to_message
+    await delete_message(message)
+    if data[1] == "confirm":
+        intervals["stopAll"] = True
+        restart_message = await send_message(reply_to, "<i>Restarting...</i>")
+        await delete_message(message)
+        await TgClient.stop()
+        if scheduler.running:
+            scheduler.shutdown(wait=False)
+        if qb := intervals["qb"]:
+            qb.cancel()
+        if jd := intervals["jd"]:
+            jd.cancel()
+        if nzb := intervals["nzb"]:
+            nzb.cancel()
+        if st := intervals["status"]:
+            for intvl in list(st.values()):
+                intvl.cancel()
+        await clean_all()
+        await TorrentManager.close_all()
+        if sabnzbd_client.LOGGED_IN:
+            await gather(
+                sabnzbd_client.pause_all(),
+                sabnzbd_client.delete_job("all", True),
+                sabnzbd_client.purge_all(True),
+                sabnzbd_client.delete_history("all", delete_files=True),
+            )
+            await sabnzbd_client.close()
+        if jdownloader.is_connected:
+            await gather(
+                jdownloader.device.downloadcontroller.stop_downloads(),
+                jdownloader.device.linkgrabber.clear_list(),
+                jdownloader.device.downloads.cleanup(
+                    "DELETE_ALL",
+                    "REMOVE_LINKS_AND_DELETE_FILES",
+                    "ALL",
+                ),
+            )
+            await jdownloader.close()
+        proc1 = await create_subprocess_exec(
+            "pkill",
+            "-9",
+            "-f",
+            f"gunicorn|{BinConfig.ARIA2_NAME}|{BinConfig.QBIT_NAME}|{BinConfig.FFMPEG_NAME}|{BinConfig.RCLONE_NAME}|java|{BinConfig.SABNZBD_NAME}|7z|split",
+        )
+        proc2 = await create_subprocess_exec("python3", "update.py")
+        await gather(proc1.wait(), proc2.wait())
+        async with aiopen(".restartmsg", "w") as f:
+            await f.write(f"{restart_message.chat.id}\n{restart_message.id}\n")
+        osexecl(executable, executable, "-m", "bot")
+    else:
+        await delete_message(message, reply_to)
 
 
 @new_task
