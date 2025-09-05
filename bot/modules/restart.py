@@ -29,7 +29,7 @@ async def restart_bot(_, message):
     await send_message(
         message, "<i>Bot is Being Restarted,Wait! </i>"
     )
-     await query.answer()
+    await query.answer()
     data = query.data.split()
     message = query.message
     reply_to = message.reply_to_message
