@@ -27,7 +27,7 @@ from ..helper.telegram_helper.message_utils import (
 @new_task
 async def restart_bot(_, message):
     await send_message(
-        message, "<i>Bot is Being Restarted,Wait! </i>", button
+        message, "<i>Bot is Being Restarted,Wait! </i>"
     )
 
 
