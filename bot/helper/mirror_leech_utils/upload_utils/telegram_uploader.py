@@ -576,7 +576,9 @@ class TelegramUploader:
                         self._last_msg_in_group = True
 
             if self._sent_msg:
-                await self._copy_media()
+               # Only copy to DM if no custom leech destination is set
+                if not self._listener.leech_dest:
+                   await self._copy_media()
                 if self._listener.leech_dest:
                     try:
                         leech_dest = self._listener.leech_dest
