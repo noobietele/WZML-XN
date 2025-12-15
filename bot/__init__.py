@@ -20,10 +20,18 @@ from os import cpu_count
 from time import time
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+import asyncio
+
+# Ensure event loop exists
+try:
+    asyncio.get_running_loop()
+except RuntimeError:
+    asyncio.set_event_loop(asyncio.new_event_loop())
+
+from pyrogram import Client
 from pyrogram import utils as pyroutils
 
 from .core.config_manager import BinConfig
-from sabnzbdapi import SabnzbdClient
 
 getLogger("requests").setLevel(WARNING)
 getLogger("urllib3").setLevel(WARNING)
@@ -53,14 +61,12 @@ cpu_no = cpu_count()
 
 bot_cache = {}
 DOWNLOAD_DIR = "/usr/src/app/downloads/"
-intervals = {"status": {}, "qb": "", "jd": "", "nzb": "", "stopAll": False}
+intervals = {"status": {}, "qb": "", "jd": "", "stopAll": False}
 qb_torrents = {}
 jd_downloads = {}
-nzb_jobs = {}
 user_data = {}
 aria2_options = {}
 qbit_options = {}
-nzb_options = {}
 queued_dl = {}
 queued_up = {}
 status_dict = {}
@@ -90,16 +96,10 @@ multi_tags = set()
 task_dict_lock = Lock()
 queue_dict_lock = Lock()
 qb_listener_lock = Lock()
-nzb_listener_lock = Lock()
 jd_listener_lock = Lock()
 cpu_eater_lock = Lock()
 same_directory_lock = Lock()
 
-sabnzbd_client = SabnzbdClient(
-    host="http://localhost",
-    api_key="admin",
-    port="8070",
-)
 srun([BinConfig.QBIT_NAME, "-d", f"--profile={getcwd()}"], check=False)
 
 scheduler = AsyncIOScheduler(event_loop=bot_loop)
